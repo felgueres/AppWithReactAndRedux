@@ -1,8 +1,21 @@
 import React from 'react';
 
-const VideoListItem = (props) => {
+const VideoListItem = ({video}) => {
+	// const video = props.video; THIS WOULD WORK TOTALLY FINE BUT THE SUGAR SYNTAX FROM E6 IS TO DEFINE AS ARGUMENT WITH CURLY BRACES.
+	const imageURL = video.snippet.thumbnails.default.url;
 
-	return <li>Video</li>;
+	return (
+		<li className='list-group-item'>
+			<div className='video-list media'>
+				<div className='media-left'>
+					<img className='media-object' src={imageURL}/>
+				</div>
+
+				<div className='media-body'>
+					<div className='media-heading'>{video.snippet.title}</div>
+				</div>
+			</div>
+		</li>);
 };
 
 export default VideoListItem
