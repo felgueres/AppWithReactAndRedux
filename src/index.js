@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import SearchBar from './components/search_bar';
+import _ from 'lodash';
 import YTSearch from 'youtube-api-search';
+import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
-import _ from 'lodash';
 // note lodash is typically imported as _
 const API_KEY = 'AIzaSyAVIbuvBVeNzCLbMeXh6Vt0I6jTsCD3zQk';
 
-// At this point, I'll bring lodash into the equation for utilities.
+//NOTE: Callback functions are a nice way to communicate between parent and child components without much overhead but it could get messy.
+// Up until this point it has been pure react, but including redux into the equation is going to have a solid impact on this.
 
 class App extends Component {
 	constructor(props){
