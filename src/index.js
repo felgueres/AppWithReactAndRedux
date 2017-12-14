@@ -11,6 +11,11 @@ const API_KEY = 'AIzaSyAVIbuvBVeNzCLbMeXh6Vt0I6jTsCD3zQk';
 //NOTE: Callback functions are a nice way to communicate between parent and child components without much overhead but it could get messy.
 // Up until this point it has been pure react, but including redux into the equation is going to have a solid impact on this.
 
+// takeaway at this point:
+// - We've only dealt with Component-level states.
+// - The App and SearchBar both have states and are independent or localized.
+// - This is going to change in Redux - which will be main change in Redux, more of an application level state.
+
 class App extends Component {
 	constructor(props){
 		super(props);
