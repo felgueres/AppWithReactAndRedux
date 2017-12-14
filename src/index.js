@@ -4,13 +4,11 @@ import SearchBar from './components/search_bar';
 import YTSearch from 'youtube-api-search';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
+import _ from 'lodash';
+// note lodash is typically imported as _
 const API_KEY = 'AIzaSyAVIbuvBVeNzCLbMeXh6Vt0I6jTsCD3zQk';
 
-// NOTE: VERY IMPORTANT: React will try to render an element that may still be in process of being obtained, ie. request, so you need to set some conditions to avoid errors of "missing elements" to be called.
-// This is essentially how you handle null props.
-// TURNS OUT THIS IS NOT IDEAL, WE CAN ADD THE CONCEPT OF A "SELECTED VIDEO" IN THE APP STATE.
-
-// CREATE A PERSONALIZED VERSION OF YOUTUBE.
+// At this point, I'll bring lodash into the equation for utilities.
 
 class App extends Component {
 	constructor(props){
@@ -31,9 +29,11 @@ class App extends Component {
 	}
 
 	render() {
+			const videoSearch = _.debounce((term) => { this.videoSearch(term)} , 300)
+
 	    return (
 	        <div>
-	            <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
+	            <SearchBar onSearchTermChange={videoSearch} />
 							<VideoDetail video={this.state.selectedVideo}/>
 	            <VideoList
 							  onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
@@ -42,7 +42,5 @@ class App extends Component {
 	    );
     }
 }
-
-// NOTE: Note how you can pass to a class args and callback functions!
 
 ReactDOM.render(<App />, document.querySelector('.container'))
